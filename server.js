@@ -18,3 +18,22 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log(`🎸 Rockin' on port: ${process.env.PORT}`)
 })
+
+const { Sequelize } = require('sequelize')
+
+// SEQUELIZE CONNECTION
+let sequelize = new Sequelize({  
+    username: "postgres",
+    password: null,
+    host: "127.0.0.1",
+    dialect: "postgres"})
+    
+
+//TEST
+
+try {
+    sequelize.authenticate() 
+    console.log(`Connected with Sequelize at ${process.env.PG_URI}`) 
+} catch(err) {
+    console.log(`Unable to connect to PG: ${err}`) 
+}
